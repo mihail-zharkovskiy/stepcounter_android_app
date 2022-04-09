@@ -8,7 +8,7 @@ import developer.mihailzharkovskiy.stepcounter.domain.usecase.statistic.Statisti
 import developer.mihailzharkovskiy.stepcounter.domain.usecase.statistic.StatisticsUseCaseModel
 import developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistika.model.DataForChart
 import developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistika.model.DataForTextView
-import developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistika.model.DialogStatistikaUiModel
+import developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistika.model.DialogStatisticsUiModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -26,6 +26,10 @@ class DialogStatisticsViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<DialogStatisticsState>(DialogStatisticsState.NoData)
     val uiState: StateFlow<DialogStatisticsState> get() = _uiState.asStateFlow()
 
+    init {
+        getDataForSpecificTime()
+    }
+
     fun getDataForSpecificTime(howManyDays: Int = 7) = viewModelScope.launch {
         when (val danie = statisticsUseCase.getDataForSpecificTime(howManyDays)) {
             is DomainDataState.YesData -> {
@@ -37,21 +41,21 @@ class DialogStatisticsViewModel @Inject constructor(
         }
     }
 
-    private fun prepareDataForUi(danie: List<StatisticsUseCaseModel>): DialogStatistikaUiModel {
+    private fun prepareDataForUi(danie: List<StatisticsUseCaseModel>): DialogStatisticsUiModel {
         var sumSteps = 0
         var sumKm = 0.0
         var sumKkal = 0.0
         val numberOfDay = danie.size
         danie.forEach {
             sumSteps += it.steps
-            sumKm += it.metrs
+            sumKm += it.meters
             sumKkal += it.kkal
         }
         val dataForChart = renderDataForChart(danie)
         val dataAllTime = renderAllTimeData(sumSteps, sumKm, sumKkal)
-        val dataAverage = renderAverageData(sumSteps, sumKm, sumKkal, numberOfDay)
+        val dataSummary = renderOnAveragePerDayData(sumSteps, sumKm, sumKkal, numberOfDay)
 
-        return DialogStatistikaUiModel(dataForChart, dataAverage, dataAllTime)
+        return DialogStatisticsUiModel(dataForChart, dataSummary, dataAllTime)
     }
 
     private fun renderAllTimeData(
@@ -66,7 +70,7 @@ class DialogStatisticsViewModel @Inject constructor(
         )
     }
 
-    private fun renderAverageData(
+    private fun renderOnAveragePerDayData(
         sumSteps: Int,
         sumMeters: Double,
         sumKkal: Double,

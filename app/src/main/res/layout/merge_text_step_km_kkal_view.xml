@@ -9,34 +9,34 @@
 
     <TextView
         android:id="@+id/tv_shagi"
-        style="@style/text_osnovnie_danie_na_temnom_fone"
+        style="@style/text_basic_data_on_light_background"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:lines="1"
         android:ellipsize="end"
-        android:text="@string/defoult_merge_view_steps"
+        android:text="@string/default_merge_view_steps"
         android:gravity="center" />
 
     <TextView
         android:id="@+id/tv_km"
-        style="@style/text_osnovnie_danie_na_temnom_fone"
+        style="@style/text_basic_data_on_light_background"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:lines="1"
         android:ellipsize="end"
-        android:text="@string/defoult_merge_view_kkal"
+        android:text="@string/default_merge_view_kkal"
         android:gravity="center" />
 
     <TextView
         android:id="@+id/tv_kkal"
-        style="@style/text_osnovnie_danie_na_temnom_fone"
+        style="@style/text_basic_data_on_light_background"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:lines="1"
         android:ellipsize="end"
-        android:text="@string/defoult_merge_view_kkal"
+        android:text="@string/default_merge_view_kkal"
         android:gravity="center" />
 </merge>

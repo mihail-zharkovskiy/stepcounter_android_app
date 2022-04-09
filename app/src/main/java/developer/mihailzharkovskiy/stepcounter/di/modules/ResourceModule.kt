@@ -6,12 +6,12 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import developer.mihailzharkovskiy.stepcounter.common.resource_provider.ResourceProvider
-import developer.mihailzharkovskiy.stepcounter.common.resource_provider.ResourceProviderImpl
+import developer.mihailzharkovskiy.stepcounter.ui.util.resource_provider.ResourceProvider
+import developer.mihailzharkovskiy.stepcounter.ui.util.resource_provider.ResourceProviderImpl
 
 @Module
 @InstallIn(SingletonComponent::class)
-class ResourceModul {
+object ResourceModule {
 
     @Provides
     fun bindResourceProvider(@ApplicationContext context: Context): ResourceProvider {

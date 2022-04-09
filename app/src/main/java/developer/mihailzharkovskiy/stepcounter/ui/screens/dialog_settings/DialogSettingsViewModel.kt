@@ -4,11 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import developer.mihailzharkovskiy.stepcounter.R
-import developer.mihailzharkovskiy.stepcounter.common.resource_provider.ResourceProvider
 import developer.mihailzharkovskiy.stepcounter.domain.DomainDataState
+import developer.mihailzharkovskiy.stepcounter.domain.usecase.user_data.InvalidateStatus
+import developer.mihailzharkovskiy.stepcounter.domain.usecase.user_data.UserDataUpdateState
 import developer.mihailzharkovskiy.stepcounter.domain.usecase.user_data.UserDataUseCase
-import developer.mihailzharkovskiy.stepcounter.domain.usecase.user_data.UserDataUseCaseUpdateState
-import developer.mihailzharkovskiy.stepcounter.domain.usecase.user_data.mapToUiModel
+import developer.mihailzharkovskiy.stepcounter.ui.util.resource_provider.ResourceProvider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,11 +22,15 @@ class DialogSettingsViewModel @Inject constructor(
     private val resource: ResourceProvider,
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<DialogSettingsState>(DialogSettingsState.NoData(
-        resource.getString(R.string.dsettings_no_data)))
+    private val _uiState =
+        MutableStateFlow<DialogSettingsState>(DialogSettingsState.NoData(resource.getString(R.string.no_data)))
     val uiState: StateFlow<DialogSettingsState> get() = _uiState.asStateFlow()
 
-    fun getUserData() = viewModelScope.launch {
+    init {
+        getUserData()
+    }
+
+    private fun getUserData() = viewModelScope.launch {
         userDataUseCase.getUserData().collect { dataState ->
             when (dataState) {
                 is DomainDataState.YesData -> {
@@ -34,29 +38,28 @@ class DialogSettingsViewModel @Inject constructor(
                 }
                 is DomainDataState.NoData -> {
                     _uiState.value =
-                        DialogSettingsState.NoData(resource.getString(R.string.dsettings_no_data))
+                        DialogSettingsState.NoData(resource.getString(R.string.no_data))
                 }
             }
         }
     }
 
-    /**
-     * дабы уменьшить количество проверок
-     * функция работает только с edit text в который можно вводить только числа
-     * **/
-    fun saveUserData(weight: String, growth: String, stepPlane: String) = viewModelScope.launch {
-        when (userDataUseCase.updateUserData(growth = growth,
-            weight = weight,
-            stepPlane = stepPlane)) {
-            is UserDataUseCaseUpdateState.InvalidDataUseCaseUpdate -> {
-                _uiState.value =
-                    DialogSettingsState.InvalidData(resource.getString(R.string.dsettings_error_write_null))
+    fun saveUserData(weight: String, height: String, stepPlane: String) = viewModelScope.launch {
+        val resultUpdate = userDataUseCase.updateUserData(height, weight, stepPlane)
+        when (resultUpdate) {
+            is UserDataUpdateState.Invalidate -> {
+                when (resultUpdate.status) {
+                    InvalidateStatus.WRITE_NOT_A_NUMBER ->
+                        _uiState.value =
+                            DialogSettingsState.InvalidData(resource.getString(R.string.write_only_numers))
+                    InvalidateStatus.WRITE_NIL ->
+                        _uiState.value =
+                            DialogSettingsState.InvalidData(resource.getString(R.string.write_null))
+                }
             }
-            is UserDataUseCaseUpdateState.NoDataUseCaseUpdate -> {
-                _uiState.value =
-                    DialogSettingsState.NoData(resource.getString(R.string.dsettings_no_data))
-            }
-            is UserDataUseCaseUpdateState.Success -> _uiState.value = DialogSettingsState.Close
+            is UserDataUpdateState.NoData -> _uiState.value =
+                DialogSettingsState.NoData(resource.getString(R.string.no_data))
+            is UserDataUpdateState.Success -> _uiState.value = DialogSettingsState.Close
         }
     }
 }

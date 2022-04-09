@@ -2,18 +2,11 @@
 <resources>
 
     <color name="red">#F44336</color>
-    <color name="green">#177A06</color>
-    <color name="zoloto">#f6b130</color>
 
-    <color name="prozrachniy">#00000000</color>
+    <color name="transparent">#00000000</color>
     <color name="black_10">#1A000000</color>
-    <color name="dark_gray_start">#121212</color>
-    <color name="dark_gray_end">#66000000</color>
-
-    <color name="white">#FFFFFF</color>
-
     <color name="heavy_clouds">#1D3245</color>
     <color name="snow">#EEF5FA</color>
-    <color name="snow2">#EAF5FD</color>
+    <color name="white">#FFFFFF</color>
 
 </resources>

@@ -6,9 +6,7 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import developer.mihailzharkovskiy.stepcounter.domain.DomainDataState
 import developer.mihailzharkovskiy.stepcounter.domain.usecase.statistic.StatisticsUseCase
-import developer.mihailzharkovskiy.stepcounter.domain.usecase.statistic.mapToUiModel
-import developer.mihailzharkovskiy.stepcounter.domain.usecase.step_counter.TickerUseCase
-import developer.mihailzharkovskiy.stepcounter.domain.usecase.step_counter.mapToUiModel
+import developer.mihailzharkovskiy.stepcounter.domain.usecase.step_counter.CounterUseCase
 import developer.mihailzharkovskiy.stepcounter.domain.usecase.user_data.UserDataUseCase
 import developer.mihailzharkovskiy.stepcounter.ui.screens.activity_main.model.MainActivityUiModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,8 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
     private val userDataUseCase: UserDataUseCase,
-    private val tickerUseCase: TickerUseCase,
-    private val statistikaUseCase: StatisticsUseCase,
+    private val tickerUseCase: CounterUseCase,
+    private val statisticsUseCase: StatisticsUseCase,
 ) : ViewModel(), LifecycleObserver {
 
     private val _uiState =
@@ -43,7 +41,7 @@ class MainActivityViewModel @Inject constructor(
     fun saveDataForTheDay() = viewModelScope.launch { tickerUseCase.saveDataForTheDay() }
 
     fun clearDatabase() = viewModelScope.launch {
-        statistikaUseCase.deleteAll()
+        statisticsUseCase.deleteAll()
         _uiState.value = MainActivityUiState.NoStatisticsData
     }
 
@@ -56,15 +54,15 @@ class MainActivityViewModel @Inject constructor(
     }
 
     private fun getAllTimeData() = viewModelScope.launch {
-        statistikaUseCase.getAllStatistics().collect { state ->
+        statisticsUseCase.getAllStatistics().collect { state ->
             when (state) {
                 is DomainDataState.NoData -> {
                     _uiState.value = MainActivityUiState.NoStatisticsData
                 }
                 is DomainDataState.YesData -> {
-                    _uiState.value =
-                        MainActivityUiState.YesStatisticsData(state.data.map { it.mapToUiModel() }
-                            .reversed())
+                    _uiState.value = MainActivityUiState.YesStatisticsData(
+                        state.data.map { it.mapToUiModel() }.reversed()
+                    )
                 }
             }
         }

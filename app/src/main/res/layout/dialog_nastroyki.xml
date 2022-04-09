@@ -8,14 +8,13 @@
 
     <TextView
         android:id="@+id/tv_zagolovok"
-        style="@style/text_zagolovok_big"
+        style="@style/text_header_big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="32dp"
-        android:text="@string/zagolovok_vvod_danih"
+        android:text="@string/dfset_header_data_entry"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,12 +31,12 @@
 
     <TextView
         android:id="@+id/textView7"
-        style="@style/text_osnovnie_danie_na_temnom_fone"
+        style="@style/text_basic_data_on_light_background"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:text="@string/zagolovok_vvedite_rost"
+        android:text="@string/dfset_header_enter_height"
         app:layout_constraintStart_toStartOf="@+id/divider4"
         app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
@@ -65,11 +64,11 @@
 
     <TextView
         android:id="@+id/textView8"
-        style="@style/text_osnovnie_danie_na_temnom_fone"
+        style="@style/text_basic_data_on_light_background"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="@string/zagolovok_vvedite_ves"
+        android:text="@string/dfset_header_enter_weight"
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/divider5" />
 
@@ -95,11 +94,11 @@
 
     <TextView
         android:id="@+id/textView9"
-        style="@style/text_osnovnie_danie_na_temnom_fone"
+        style="@style/text_basic_data_on_light_background"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="@string/zagolovok_vvedite_cel_shagi"
+        android:text="@string/dfset_header_plane_steps"
         app:layout_constraintStart_toStartOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/divider6" />
 
@@ -125,14 +124,14 @@
 
     <TextView
         android:id="@+id/button"
-        style="@style/text_osnovnie_danie_na_temnom_fone"
+        style="@style/text_basic_data_on_light_background"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/prozrachniy"
+        android:background="@color/transparent"
         android:gravity="center"
-        android:text="@string/bt_save"
+        android:text="@string/dfset_bt_save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/divider8"
         app:layout_constraintStart_toStartOf="@+id/divider8"

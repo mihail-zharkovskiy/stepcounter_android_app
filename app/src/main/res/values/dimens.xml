@@ -6,9 +6,9 @@
 
     <dimen name="button_height">35dp</dimen>
 
-    <dimen name="text_size_zagolovki_big">19dp</dimen>
-    <dimen name="text_size_zagolovki_small">15dp</dimen>
-    <dimen name="text_size_osnovnie_danie">17dp</dimen>
+    <dimen name="text_size_header_big">19dp</dimen>
+    <dimen name="text_size_header_small">15dp</dimen>
+    <dimen name="text_size_basic_data">17dp</dimen>
 
     <dimen name="text_size_ticker_small">19dp</dimen>
     <dimen name="text_size_ticker_big">37dp</dimen>

@@ -4,15 +4,15 @@
 
     <string name="kkal">ккaл</string>
     <string name="km">км</string>
-    <string name="metrs">метры</string>
+    <string name="meters">метры</string>
 
-    <string name="defoult_text_ticer">0</string>
+    <string name="default_text_counter">0</string>
 
     //dper - dialog permission
-    <string name="dper_zapret_navsegda">чтобы предоставить разрешение, перейдите в настройки приложения самостоятельно</string>
+    <string name="dper_ban_forever">чтобы предоставить разрешение, перейдите в настройки приложения самостоятельно</string>
     <string name="dper_no_permission">НЕТ РАЗРЕШЕНИЯ</string>
     <string name="dper_message">чтобы приложение могло подсчитывать ваши шаги, вaм нужно предоставить разрешение для работы с сенсором отслеживающим движения</string>
-    <string name="dper_razreshit">разрешить</string>
+    <string name="dper_allow">разрешить</string>
     <string name="dper_restart">перезагрузите приложение</string>
 
     //am - activity main
@@ -23,48 +23,49 @@
     <string name="dstat_no_data">нет данных</string>
 
     //dsettings - dialog settings
-    <string name="dsettings_error_write_null">нельзя вводить 0</string>
-    <string name="dsettings_no_data">введите данные</string>
+    <string name="write_null">нельзя вводить 0</string>
+    <string name="write_only_numers">можно вводить только цифры</string>
+    <string name="no_data">введите данные</string>
 
-    //notificatiom
+    //notification
     <string name="notification_ticker">"шаги: %1$d растояние: %2$.2f"</string>
-    <string name="notification_shapka">"пройдись не ленись"</string>
+    <string name="notification_header">"пройдись не ленись"</string>
 
-    //dialog fragmen nastroyki
-    <string name="defoult_hint_edit_text">- - -</string>
-    <string name="zagolovok_vvod_danih">введите ваши данные</string>
-    <string name="zagolovok_vvedite_rost">ваш рост в см</string>
-    <string name="zagolovok_vvedite_ves">ваш вес в кг</string>
-    <string name="zagolovok_vvedite_cel_shagi">суточная цель в шагах</string>
-    <string name="bt_save">сохранить</string>
+    //dfset - dialog fragment settings
+    <string name="dfset_default_hint_edit_text">- - -</string>
+    <string name="dfset_header_data_entry">введите ваши данные</string>
+    <string name="dfset_header_enter_height">ваш рост в см</string>
+    <string name="dfset_header_enter_weight">ваш вес в кг</string>
+    <string name="dfset_header_plane_steps">суточная цель в шагах</string>
+    <string name="dfset_bt_save">сохранить</string>
 
-    //dialog fragment statisitka
-    <string name="zagolovok_statisitka">статистика шагов</string>
-    <string name="bt_7_day">7 дней</string>
-    <string name="bt_30_day">30 дней</string>
-    <string name="bt_90_day">90 дней</string>
-    <string name="zagolovok_vsrednem_za_den">в среднем за день</string>
-    <string name="zagolovok_vsego">всего</string>
+    //dfs - dialog fragment statistics
+    <string name="dfs_header_statistics">статистика шагов</string>
+    <string name="dfs_bt_7_day">7 дней</string>
+    <string name="dfs_bt_30_day">30 дней</string>
+    <string name="dfs_bt_90_day">90 дней</string>
+    <string name="dfs_header_on_average_per_day">в среднем за день</string>
+    <string name="dfs_header_sum">всего</string>
 
     //merge view step km kkal
-    <string name="defoult_merge_view_steps">шаги: 0</string>
-    <string name="defoult_merge_view_kkal">ккaл: 0.0</string>
-    <string name="defoult_merge_view_km">км: 0.0</string>
+    <string name="default_merge_view_steps">шаги: 0</string>
+    <string name="default_merge_view_kkal">ккaл: 0.0</string>
+    <string name="default_merge_view_km">км: 0.0</string>
     <string name="merge_view_steps">шаги: %1$s</string>
     <string name="merge_view_km">км: %1$s</string>
     <string name="merge_view_kkal">ккaл: %1$s</string>
 
-    //recycler view
-    <string name="defoult_0_kkal">ккaл: 0.0</string>
-    <string name="defoult_0_steps">шаги: 0</string>
-    <string name="defoult_0_km">км: 0.0</string>
-    <string name="recycker_view_kkal">ккaл: %1$s</string>
-    <string name="recycker_view_steps">шаги: %1$s</string>
-    <string name="recycker_view_km">км: %1$s</string>
+    //recycler view steps
+    <string name="default_0_kkal">ккaл: 0.0</string>
+    <string name="default_0_steps">шаги: 0</string>
+    <string name="default_0_km">км: 0.0</string>
+    <string name="recycler_view_kkal">ккaл: %1$s</string>
+    <string name="recycler_view_steps">шаги: %1$s</string>
+    <string name="recycler_view_km">км: %1$s</string>
 
-    //ticer and progress view
-    <string name="defoule_plane_shagov_na_den">план\n10000</string>
-    <string name="plane_shagov_na_den">план\n%1$s</string>
+    //counter and progress view
+    <string name="default_plane_steps_on_day">план\n10000</string>
+    <string name="steps_plane_on_day">план\n%1$s</string>
 
     //snack bar delete
     <string name="snack_bar_delete_header">Вы действительно хотите удалить\nвсе данные?</string>

@@ -24,7 +24,7 @@ interface DaoAllTimeData {
     suspend fun saveData(data: StepAllTimeDataEntity)
 
     @Query("DELETE FROM table_steps_data_for_specific_day")
-    suspend fun deletAll()
+    suspend fun deleteAll()
 
     @Query("SELECT * FROM table_steps_data_for_specific_day LIMIT :howManyDays")
     suspend fun getDataForSpecificTime(howManyDays: Int): List<StepAllTimeDataEntity>

@@ -10,8 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="@string/zagolovok_statisitka"
-        style="@style/text_zagolovok_big"
+        android:text="@string/dfs_header_statistics"
+        style="@style/text_header_big"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/bt_7_day"
+            android:text="@string/dfs_bt_7_day"
             app:strokeColor="@color/heavy_clouds" />
 
         <Button
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/bt_30_day"
+            android:text="@string/dfs_bt_30_day"
             app:strokeColor="@color/heavy_clouds" />
 
         <Button
@@ -77,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/bt_90_day"
+            android:text="@string/dfs_bt_90_day"
             app:strokeColor="@color/heavy_clouds" />
 
 
@@ -86,22 +86,22 @@
 
     <TextView
         android:id="@+id/textView5"
-        style="@style/text_zagolovok_big"
+        style="@style/text_header_big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/zagolovok_vsrednem_za_den"
+        android:text="@string/dfs_header_on_average_per_day"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
     <TextView
         android:id="@+id/textView6"
-        style="@style/text_zagolovok_big"
+        style="@style/text_header_big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/zagolovok_vsego"
+        android:text="@string/dfs_header_sum"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toggleButton" />

@@ -22,14 +22,14 @@ fun AppCompatActivity.goToAppSetting() {
     ) {
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.dper_no_permission))
-            .setMessage(getString(R.string.dper_zapret_navsegda))
+            .setMessage(getString(R.string.dper_ban_forever))
             .create()
             .show()
     } else {
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.dper_no_permission))
             .setMessage(getString(R.string.dper_message))
-            .setPositiveButton(getString(R.string.dper_razreshit)) { _, _ ->
+            .setPositiveButton(getString(R.string.dper_allow)) { _, _ ->
                 startActivity(appSettingIntent)
             }
             .create()

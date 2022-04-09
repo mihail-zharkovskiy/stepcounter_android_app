@@ -10,13 +10,10 @@ import developer.mihailzharkovskiy.stepcounter.data.room.entity.StepForNowDataEn
 interface DaoDataForNow {
 
     @Query("SELECT * FROM table_steps_data_for_today")
-    suspend fun getDanieNaDaniyMoment(): StepForNowDataEntity
-
-    @Query("SELECT COUNT(*) FROM table_steps_data_for_today")
-    suspend fun proverkaEstLiDanieVtablice(): Int
+    suspend fun getDataForNow(): StepForNowDataEntity?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun saveDanieNaDaniyMoment(danieNaDaniyMoment: StepForNowDataEntity)
+    suspend fun saveDataForNow(dataForNow: StepForNowDataEntity)
 
     @Query("DELETE FROM table_steps_data_for_today")
     suspend fun deleteAll()

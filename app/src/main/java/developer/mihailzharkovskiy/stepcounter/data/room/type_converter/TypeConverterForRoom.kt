@@ -8,5 +8,5 @@ class TypeConverterForRoom {
     fun fromDateToLong(date: Date): Long = date.time
 
     @TypeConverter
-    fun fromLongToDate(secunde: Long): Date = Date(secunde)
+    fun fromLongToDate(seconds: Long): Date = Date(seconds)
 }

@@ -7,25 +7,20 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import developer.mihailzharkovskiy.stepcounter.common.dispatchers_provider.DispatcherProvider
 import developer.mihailzharkovskiy.stepcounter.data.repository.RepositoryImpl
 import developer.mihailzharkovskiy.stepcounter.data.room.StepsDataBase
 import developer.mihailzharkovskiy.stepcounter.data.room.dao.DaoAllTimeData
 import developer.mihailzharkovskiy.stepcounter.data.room.dao.DaoDataForNow
 import developer.mihailzharkovskiy.stepcounter.data.room.dao.DaoDataUser
+import developer.mihailzharkovskiy.stepcounter.di.anatations.DispatcherIo
 import developer.mihailzharkovskiy.stepcounter.di.anatations.ReleaseDataBase
 import developer.mihailzharkovskiy.stepcounter.domain.Repository
+import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DataModule {
-
-////  SHARED_PREFERENCES
-//    @Provides
-//    fun provideSheredPref(@ApplicationContext context: Context): SharedPreferences {
-//        return context.getSharedPreferences(Constance.ForSharedPref.KEY_SHARED_PREF, Context.MODE_PRIVATE)
-//    }
+object DataModule {
 
     //  REPOSITORY
     @Provides
@@ -34,9 +29,9 @@ class DataModule {
         daoAllTime: DaoAllTimeData,
         daoDataForNow: DaoDataForNow,
         daoUserData: DaoDataUser,
-        dispatcherProvider: DispatcherProvider,
+        @DispatcherIo dispatcherIo: CoroutineDispatcher,
     ): Repository {
-        return RepositoryImpl(daoDataForNow, daoAllTime, daoUserData, dispatcherProvider)
+        return RepositoryImpl(daoDataForNow, daoAllTime, daoUserData, dispatcherIo)
     }
 
     //  ROOM

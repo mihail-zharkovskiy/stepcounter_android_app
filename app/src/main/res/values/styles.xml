@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="MyAnimationDop" parent="MyAnimation">
-        <item name="android:windowAnimationStyle">@style/MyAnimation</item>
-    </style>
-
-    <style name="MyAnimation">
-        <item name="android:windowEnterAnimation">@anim/anim_in</item>
-        <item name="android:windowExitAnimation">@anim/anim_out</item>
-    </style>
-
-
     <style name="ToggleButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:layout_weight">1</item>
         <item name="android:fontFamily">sans-serif-condensed-light</item>
@@ -18,57 +8,57 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
         <item name="android:textColor">@color/heavy_clouds</item>
-        <item name="android:textSize">@dimen/text_size_osnovnie_danie</item>
+        <item name="android:textSize">@dimen/text_size_basic_data</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TickerViewSmall">
-        <item name="android:text">@string/defoult_text_ticer</item>
+        <item name="android:text">@string/default_text_counter</item>
         <item name="android:textColor">@color/heavy_clouds</item>
         <item name="android:textSize">@dimen/text_size_ticker_small</item>
         <item name="android:gravity">center</item>
     </style>
 
     <style name="TickerViewBig">
-        <item name="android:text">@string/defoult_text_ticer</item>
+        <item name="android:text">@string/default_text_counter</item>
         <item name="android:textColor">@color/heavy_clouds</item>
         <item name="android:textSize">@dimen/text_size_ticker_big</item>
         <item name="android:gravity">center</item>
     </style>
 
 
-    <style name="text_zagolovok_big">
+    <style name="text_header_big">
         <item name="android:gravity">center</item>
         <item name="android:fontFamily">sans-serif-condensed-light</item>
         <item name="android:textColor">@color/heavy_clouds</item>
-        <item name="android:textSize">@dimen/text_size_zagolovki_big</item>
+        <item name="android:textSize">@dimen/text_size_header_big</item>
     </style>
 
-    <style name="text_zagolovok_small">
+    <style name="text_header_small">
         <item name="android:gravity">center</item>
         <item name="android:fontFamily">sans-serif-condensed-light</item>
         <item name="android:textColor">@color/heavy_clouds</item>
-        <item name="android:textSize">@dimen/text_size_zagolovki_small</item>
+        <item name="android:textSize">@dimen/text_size_header_small</item>
     </style>
 
-    <style name="text_osnovnie_danie_na_svetlom_fone">
+    <style name="text_basic_data_on_dark_background">
         <item name="android:fontFamily">sans-serif-condensed-light</item>
         <item name="android:textColor">@color/snow</item>
-        <item name="android:textSize">@dimen/text_size_osnovnie_danie</item>
+        <item name="android:textSize">@dimen/text_size_basic_data</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="text_osnovnie_danie_na_temnom_fone">
+    <style name="text_basic_data_on_light_background">
         <item name="android:fontFamily">sans-serif-condensed-light</item>
         <item name="android:textColor">@color/heavy_clouds</item>
-        <item name="android:textSize">@dimen/text_size_osnovnie_danie</item>
+        <item name="android:textSize">@dimen/text_size_basic_data</item>
         <item name="android:textStyle">bold</item>
     </style>
 
 
     <style name="edit_text">
         <item name="android:fontFamily">sans-serif-condensed-light</item>
-        <item name="android:hint">@string/defoult_hint_edit_text</item>
+        <item name="android:hint">@string/dfset_default_hint_edit_text</item>
         <item name="android:inputType">number</item>
         <item name="android:paddingTop">4dp</item>
         <item name="android:paddingBottom">4dp</item>
@@ -78,15 +68,15 @@
         <item name="android:textAlignment">center</item>
         <item name="android:textColor">@color/heavy_clouds</item>
         <item name="android:textColorHint">@color/heavy_clouds</item>
-        <item name="android:textSize">@dimen/text_size_osnovnie_danie</item>
+        <item name="android:textSize">@dimen/text_size_basic_data</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textCursorDrawable">@null</item>
     </style>
 
-    <style name="button_s_ramkoy">
+    <style name="button_with_stroke">
         <item name="android:fontFamily">sans-serif-condensed-light</item>
         <item name="android:textColor">@color/heavy_clouds</item>
-        <item name="android:textSize">@dimen/text_size_osnovnie_danie</item>
+        <item name="android:textSize">@dimen/text_size_basic_data</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAllCaps">false</item>strokeColor

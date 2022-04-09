@@ -19,17 +19,16 @@ import javax.inject.Inject
 class StepCounterNotification @Inject constructor(
     @ApplicationContext
     private val context: Context,
-    private val notificationManager: NotificationManager,
 ) {
 
-//    private val notificationManager =
-//        context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    private val notificationManager =
+        context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
     private val notificationBuilder: NotificationCompat.Builder by lazy {
         NotificationCompat.Builder(context, NOTIF_CHANNEL_ID)
             .setAutoCancel(false)
             .setDefaults(Notification.DEFAULT_ALL)
-            .setContentTitle(context.getString(R.string.notification_shapka))
+            .setContentTitle(context.getString(R.string.notification_header))
             .setContentText(context.getString(R.string.notification_ticker, 0, 0.0))
             .setWhen(System.currentTimeMillis())
             .setDefaults(0)
@@ -73,7 +72,7 @@ class StepCounterNotification @Inject constructor(
 
     companion object {
         const val NOTIF_ID = 1
-        const val NOTIF_CHANNEL_ID = "CHANNEL_ID_NORIFICATION_SHAGOMER"
+        const val NOTIF_CHANNEL_ID = "CHANNEL_ID_NOTIFICATION_STEP_COUNTER"
         const val NOTIF_CHANNEL_NAME = "CHANNEL_NAME_STEPS"
     }
 }

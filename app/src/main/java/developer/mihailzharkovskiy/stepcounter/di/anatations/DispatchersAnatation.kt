@@ -4,4 +4,13 @@ import javax.inject.Qualifier
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
-annotation class DispatchersAnatation
+annotation class DispatcherMain()
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class DispatcherDefault()
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class DispatcherIo()
+

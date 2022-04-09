@@ -1,6 +1,5 @@
 package developer.mihailzharkovskiy.stepcounter.domain.usecase.step_counter
 
-import developer.mihailzharkovskiy.stepcounter.common.dispatchers_provider.DispatcherProvider
 import developer.mihailzharkovskiy.stepcounter.domain.Repository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,9 +12,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class TickerUseCase @Inject constructor(
-    private val repositoriy: Repository,
-    private val dispatcher: DispatcherProvider,
+class CounterUseCase @Inject constructor(
+    private val repository: Repository,
+    private val coroutineScope: CoroutineScope,
 ) {
     private var shagi = 0
     private var kkal = 0.0
@@ -25,7 +24,7 @@ class TickerUseCase @Inject constructor(
     private var rost = 0
     private var ves = 0
     private var stepsPlane = 0
-    private var razmerShaga =
+    private var stepSize =
         (rost / 400.0) + 0.37 //непонятно? просто погугл формулу для расчета размера шага
 
     private var date = Date()
@@ -34,7 +33,7 @@ class TickerUseCase @Inject constructor(
     val tickerData: StateFlow<TickerUseCaseModel?> = _tickerData.asStateFlow()
 
     init {
-        CoroutineScope(dispatcher.io).launch {
+        coroutineScope.launch {
             restoreCounterData()
             getUserData()
         }
@@ -42,8 +41,8 @@ class TickerUseCase @Inject constructor(
 
     fun doStep(): TickerUseCaseModel {
         shagi++
-        km += razmerShaga
-        kkal = (shagi * razmerShaga) / 1000 * 0.5 * ves
+        km += stepSize
+        kkal = (shagi * stepSize) / 1000 * 0.5 * ves
         progress = (shagi * 100) / stepsPlane
         _tickerData.value = TickerUseCaseModel(date, shagi, km, kkal, progress, stepsPlane)
         return TickerUseCaseModel(date, shagi, km, kkal, progress, stepsPlane)
@@ -51,7 +50,7 @@ class TickerUseCase @Inject constructor(
 
 
     private suspend fun restoreCounterData() {
-        repositoriy.restoreToDayData()?.let {
+        repository.restoreToDayData()?.let {
             shagi = it.steps
             kkal = it.kkal
             km = it.km
@@ -61,33 +60,33 @@ class TickerUseCase @Inject constructor(
     }
 
     private suspend fun getUserData() {
-        repositoriy.getUserData().let { flow ->
+        repository.getUserData().let { flow ->
             flow.collect { data ->
                 if (data != null) {
                     rost = data.height
                     ves = data.weight
                     stepsPlane = data.stepPlane
-                    razmerShaga = (rost / 400.0) + 0.37
+                    stepSize = (rost / 400.0) + 0.37
                     progress = (shagi * 100) / stepsPlane
                     _tickerData.value =
                         TickerUseCaseModel(date, shagi, km, kkal, progress, stepsPlane)
                 }
                 //над этим else надо думать
-                //else throw (Exception("НЕПОЛУЧИЛ ДАННЫЕ О ПОЛЬЗОВАТЕЛЕ В ТИКЕРЕ"))
+                //else throw (Exception("НЕПОЛУЧИЛ В СЧЕТЧИКЕ ДАННЫЕ О ПОЛЬЗОВАТЕЛЕ "))
             }
         }
     }
 
     suspend fun saveDataForNow() {
-        repositoriy.saveDataForNow(tickerData.value)
+        repository.saveDataForNow(tickerData.value)
     }
 
     suspend fun saveDataForTheDay() {
-        repositoriy.saveDataForTheDay(tickerData.value)
-        obnulitSchentchik()
+        repository.saveDataForTheDay(tickerData.value)
+        resetCounter()
     }
 
-    private fun obnulitSchentchik() {
+    private fun resetCounter() {
         shagi = 0
         km = 0.0
         kkal = 0.0

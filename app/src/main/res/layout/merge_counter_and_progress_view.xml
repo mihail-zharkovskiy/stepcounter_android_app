@@ -38,10 +38,10 @@
 
     <TextView
         android:id="@+id/tv_skolko_nuzhno_proyti"
-        style="@style/text_zagolovok_big"
+        style="@style/text_header_big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/defoule_plane_shagov_na_den"
+        android:text="@string/default_plane_steps_on_day"
         app:layout_constraintEnd_toEndOf="@+id/progers_bar_donut_view"
         app:layout_constraintStart_toStartOf="@+id/progers_bar_donut_view"
         app:layout_constraintTop_toBottomOf="@+id/tv_tiker" />

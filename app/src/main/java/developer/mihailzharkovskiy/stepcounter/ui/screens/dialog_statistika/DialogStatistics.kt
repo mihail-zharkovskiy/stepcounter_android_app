@@ -37,24 +37,12 @@ class DialogStatistics : BaseDialogFragment<DialogStatistikaBinding>() {
 
         binding.toggleButton.addOnButtonCheckedListener(toggleGroupListener)
 
-        viewModel.getDataForSpecificTime(7)
+//        viewModel.getDataForSpecificTime(7)
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.uiState
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collect { uiState ->
-                    when (uiState) {
-                        is DialogStatisticsState.NoData -> {
-                            binding.tvNoData.visibility = View.VISIBLE
-                        }
-                        is DialogStatisticsState.YesData -> {
-                            binding.tvNoData.visibility = View.GONE
-                            binding.statisticsAllTime.renderPrams(uiState.data.sumarnieDanie)
-                            binding.statistikaSrednemZaDen.renderPrams(uiState.data.danieVSrednemZaDen)
-                            drawGrafika(uiState.data.dataForGrafik)
-                        }
-                    }
-                }
+                .collect { uiState -> applyUiState(uiState) }
         }
     }
 
@@ -70,6 +58,20 @@ class DialogStatistics : BaseDialogFragment<DialogStatistikaBinding>() {
             setColorArray(intArrayOf(Color.BLACK))
             setBottomTextList(data.listDate)
             setDataList(arrayListOf(data.listStep))
+        }
+    }
+
+    private fun applyUiState(uiState: DialogStatisticsState) {
+        when (uiState) {
+            is DialogStatisticsState.NoData -> {
+                binding.tvNoData.visibility = View.VISIBLE
+            }
+            is DialogStatisticsState.YesData -> {
+                binding.tvNoData.visibility = View.GONE
+                binding.statisticsAllTime.renderPrams(uiState.data.dataSummary)
+                binding.statistikaSrednemZaDen.renderPrams(uiState.data.dataOnAveragePerDay)
+                drawGrafika(uiState.data.dataForChart)
+            }
         }
     }
 

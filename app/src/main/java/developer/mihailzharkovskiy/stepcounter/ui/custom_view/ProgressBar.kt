@@ -25,11 +25,10 @@ class ProgressBar @JvmOverloads constructor(
     private var progressColor: Int = ContextCompat.getColor(context, R.color.snow)
     private var progressBkgColor: Int = ContextCompat.getColor(context, R.color.heavy_clouds)
     private var cornerRadius = resources.getDimension(R.dimen.corner_radius_no_custom_view)
-    private val rectBackground by lazy { RectF(0f, 0f, width.toFloat(), height.toFloat()) }
-
-
-    private var paint = Paint().apply { Paint.Style.FILL_AND_STROKE }
     private val padding = 2.toDp()
+
+    private val rectBackground by lazy { RectF(0f, 0f, width.toFloat(), height.toFloat()) }
+    private var paint = Paint().apply { Paint.Style.FILL_AND_STROKE }
 
     override fun onDraw(canvas: Canvas) {
         drawBackground(canvas)

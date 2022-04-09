@@ -27,16 +27,20 @@ class AdapterSteps() : RecyclerView.Adapter<AdapterSteps.ViewHolder>() {
         }
     }
 
-    val differ = AsyncListDiffer(this, differCallback)
+    private val differ = AsyncListDiffer(this, differCallback)
+
+    fun submitList(data: List<AdapterStepsUiModel>) {
+        differ.submitList(data)
+    }
 
     inner class ViewHolder(
         private val binding: AdapterStepsBinding,
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(data: AdapterStepsUiModel) = with(binding) {
-            tvShagi.text = itemView.context.getString(R.string.recycker_view_steps, data.steps)
-            tvKalorii.text = itemView.context.getString(R.string.recycker_view_kkal, data.kkal)
-            tvRastoyanie.text = itemView.context.getString(R.string.recycker_view_km, data.km)
+            tvShagi.text = itemView.context.getString(R.string.recycler_view_steps, data.steps)
+            tvKalorii.text = itemView.context.getString(R.string.recycler_view_kkal, data.kkal)
+            tvRastoyanie.text = itemView.context.getString(R.string.recycler_view_km, data.km)
             tvDate.text = data.date
             progressBar.progress = data.progress
         }

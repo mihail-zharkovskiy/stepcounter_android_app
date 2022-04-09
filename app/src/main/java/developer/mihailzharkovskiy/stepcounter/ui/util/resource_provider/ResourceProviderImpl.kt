@@ -1,4 +1,4 @@
-package developer.mihailzharkovskiy.stepcounter.common.resource_provider
+package developer.mihailzharkovskiy.stepcounter.ui.util.resource_provider
 
 import android.content.Context
 import android.content.res.Resources

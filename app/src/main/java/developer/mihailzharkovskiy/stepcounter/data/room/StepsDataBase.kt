@@ -27,19 +27,6 @@ abstract class StepsDataBase : RoomDatabase() {
     abstract fun getDaoUserData(): DaoDataUser
 
     companion object {
-        //        private var INSTANCE: StepsDataBase? = null
         const val dataBaseName = "steps_date_base"
-
-//        fun getDatebase(context: Context): StepsDataBase {
-//            if (INSTANCE == null) {
-//                INSTANCE = Room.databaseBuilder(
-//                        context,
-//                        StepsDataBase::class.java,
-//                        "shagi_datebase")
-//                        .fallbackToDestructiveMigration()
-//                        .build()
-//            }
-//            return INSTANCE as StepsDataBase
-//        }
     }
 }

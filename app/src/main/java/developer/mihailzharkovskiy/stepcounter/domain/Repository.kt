@@ -1,6 +1,5 @@
 package developer.mihailzharkovskiy.stepcounter.domain
 
-import developer.mihailzharkovskiy.stepcounter.data.room.entity.StepForNowDataEntity
 import developer.mihailzharkovskiy.stepcounter.domain.usecase.statistic.StatisticsUseCaseModel
 import developer.mihailzharkovskiy.stepcounter.domain.usecase.step_counter.TickerUseCaseModel
 import developer.mihailzharkovskiy.stepcounter.domain.usecase.user_data.UserDataUseCaseModel
@@ -18,12 +17,12 @@ interface Repository {
 
     suspend fun getDataForSpecificTime(howManyDays: Int): List<StatisticsUseCaseModel>
 
-    suspend fun restoreToDayData(): StepForNowDataEntity?
+    suspend fun restoreToDayData(): TickerUseCaseModel?
 
-    /**сохранение данных в onPouse**/
+    /**сохранение данных в onPause**/
     suspend fun saveDataForNow(data: TickerUseCaseModel?)
 
-    /**сохранение данных в статистику**/
+    /**сохранение данных в статистику(приножатии кнопки сохранить)**/
     suspend fun saveDataForTheDay(data: TickerUseCaseModel?)
 
 }

@@ -20,7 +20,7 @@ abstract class BaseDialogFragment<T : ViewBinding> : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        dialog?.window?.setBackgroundDrawableResource(R.color.prozrachniy)
+        dialog?.window?.setBackgroundDrawableResource(R.color.transparent)
         _binding = initBinding(inflater, container)
         return binding.root
     }

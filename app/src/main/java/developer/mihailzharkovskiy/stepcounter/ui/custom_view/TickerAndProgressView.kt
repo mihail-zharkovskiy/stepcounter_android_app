@@ -25,7 +25,7 @@ class TickerAndProgressView @JvmOverloads constructor(
         DonutSection("section_1", ContextCompat.getColor(context, R.color.heavy_clouds), 1f)
 
     init {
-        inflate(context, R.layout.merge_ticker_and_progress_view, this)
+        inflate(context, R.layout.merge_counter_and_progress_view, this)
         progressBar = findViewById(R.id.progers_bar_donut_view)
         progressBar.cap = 100f
         progressBar.submitData(listOf(section1))
@@ -37,7 +37,7 @@ class TickerAndProgressView @JvmOverloads constructor(
     fun renderParams(progres: Int, steps: String, stepsPlane: String) {
         progressBar.submitData(listOf(section1.copy(amount = progres.toFloat())))
         textTicker.text = steps
-        tvPlaneStep.text = context.getString(R.string.plane_shagov_na_den, stepsPlane)
+        tvPlaneStep.text = context.getString(R.string.steps_plane_on_day, stepsPlane)
     }
 
     fun renderEmptyState() {

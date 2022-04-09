@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                 is MainActivityUiState.YesStatisticsData -> {
                     binding.rvStatistikaShagov.visibility = View.VISIBLE
                     binding.tvNoStatisticsData.visibility = View.INVISIBLE
-                    stepAdapter.differ.submitList(state.data)
+                    stepAdapter.submitList(state.data)
                 }
                 is MainActivityUiState.NoUserData -> {
                     binding.tvNoUserData.visibility = View.VISIBLE

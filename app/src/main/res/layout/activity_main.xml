@@ -40,13 +40,13 @@
 
         <TextView
             android:id="@+id/textView2"
-            style="@style/text_zagolovok_small"
+            style="@style/text_header_small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:text="@string/metrs"
+            android:text="@string/meters"
             app:drawableStartCompat="@drawable/ic_step_light"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
 
         <com.robinhood.ticker.TickerView
             android:id="@+id/tv_tiker_meters"
-            style="@style/text_zagolovok_big"
+            style="@style/text_header_big"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -78,7 +78,7 @@
 
         <TextView
             android:id="@+id/textView4"
-            style="@style/text_zagolovok_small"
+            style="@style/text_header_small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -89,7 +89,7 @@
 
         <com.robinhood.ticker.TickerView
             android:id="@+id/tv_tiker_kalorii"
-            style="@style/text_zagolovok_big"
+            style="@style/text_header_big"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -116,7 +116,7 @@
 
     <TextView
         android:id="@+id/tv_no_statistics_data"
-        style="@style/text_zagolovok_small"
+        style="@style/text_header_small"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -125,7 +125,7 @@
 
     <TextView
         android:id="@+id/tv_no_user_data"
-        style="@style/text_zagolovok_small"
+        style="@style/text_header_small"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

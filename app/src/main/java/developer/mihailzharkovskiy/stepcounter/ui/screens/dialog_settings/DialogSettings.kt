@@ -5,6 +5,7 @@ import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -21,11 +22,7 @@ import kotlinx.coroutines.launch
 class DialogSettings : BaseDialogFragment<DialogNastroykiBinding>() {
 
     private val viewModel: DialogSettingsViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.getUserData()
-    }
+    private var toast: Toast? = null
 
     override fun initBinding(
         inflater: LayoutInflater,
@@ -40,41 +37,48 @@ class DialogSettings : BaseDialogFragment<DialogNastroykiBinding>() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.uiState
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collect { state ->
-                    when (state) {
-                        is DialogSettingsState.YesData -> {
-                            val data = state.data
-                            binding.etVes.setText(data.weight)
-                            binding.etRost.setText(data.height)
-                            binding.etStepPlane.setText(data.stepPlane)
-                            dialog?.setCancelable(true)
-                        }
-                        is DialogSettingsState.NoData -> {
-                            requireContext().toast(state.message)
-                            dialog?.setCancelable(false)
-                        }
-                        is DialogSettingsState.InvalidData -> {
-                            requireContext().toast(state.message)
-                            dialog?.setCancelable(false)
-                        }
-                        is DialogSettingsState.Close -> {
-                            dialog?.cancel()
-                        }
-                    }
-                }
+                .collect { state -> applyUiState(state) }
         }
 
         binding.button.setOnClickListener {
             it.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
-            val rost = binding.etRost.text.toString()
-            val ves = binding.etVes.text.toString()
+            val height = binding.etRost.text.toString()
+            val weight = binding.etVes.text.toString()
             val stepPlane = binding.etStepPlane.text.toString()
-            viewModel.saveUserData(weight = ves, growth = rost, stepPlane = stepPlane)
+            viewModel.saveUserData(weight = weight, height = height, stepPlane = stepPlane)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        toast?.cancel()
+    }
+
+    private fun applyUiState(state: DialogSettingsState) {
+        when (state) {
+            is DialogSettingsState.YesData -> {
+                val data = state.data
+                binding.etVes.setText(data.weight)
+                binding.etRost.setText(data.height)
+                binding.etStepPlane.setText(data.stepPlane)
+                dialog?.setCancelable(true)
+            }
+            is DialogSettingsState.NoData -> {
+                toast = requireContext().toast(state.message)
+                dialog?.setCancelable(false)
+            }
+            is DialogSettingsState.InvalidData -> {
+                toast = requireContext().toast(state.message)
+                dialog?.setCancelable(false)
+            }
+            is DialogSettingsState.Close -> {
+                dialog?.cancel()
+            }
         }
     }
 
     companion object {
-        private const val TAG = "TAG_NastroykiFragment"
+        private const val TAG = "TAG_DialogSettings"
         fun show(manager: FragmentManager) {
             DialogSettings().show(manager, TAG)
         }

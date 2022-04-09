@@ -8,12 +8,11 @@
 
     <TextView
         android:id="@+id/tv_date"
-        style="@style/text_osnovnie_danie_na_svetlom_fone"
+        style="@style/text_basic_data_on_dark_background"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/background_adapter_day_of_week_light"
         android:gravity="center"
-        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,11 +28,11 @@
 
     <TextView
         android:id="@+id/tv_kalorii"
-        style="@style/text_osnovnie_danie_na_temnom_fone"
+        style="@style/text_basic_data_on_light_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        tools:text="@string/defoult_0_kkal"
+        tools:text="@string/default_0_kkal"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_rastoyanie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_rastoyanie" />
@@ -41,24 +40,23 @@
 
     <TextView
         android:id="@+id/tv_shagi"
-        style="@style/text_osnovnie_danie_na_temnom_fone"
+        style="@style/text_basic_data_on_light_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
-        tools:text="@string/defoult_0_steps"
+        tools:text="@string/default_0_steps"
         app:layout_constraintEnd_toStartOf="@+id/tv_rastoyanie"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/tv_rastoyanie"
-        style="@style/text_osnovnie_danie_na_temnom_fone"
+        style="@style/text_basic_data_on_light_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        tools:text="@string/defoult_0_km"
+        tools:text="@string/default_0_km"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_shagi"
         app:layout_constraintEnd_toStartOf="@+id/tv_kalorii"
         app:layout_constraintStart_toEndOf="@+id/tv_shagi" />

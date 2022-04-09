@@ -22,22 +22,26 @@ class UserDataUseCase @Inject constructor(
         weight: String,
         growth: String,
         stepPlane: String,
-    ): UserDataUseCaseUpdateState {
+    ): UserDataUpdateState {
         return when {
             weight.isEmpty() || growth.isEmpty() || stepPlane.isEmpty() -> {
-                UserDataUseCaseUpdateState.NoDataUseCaseUpdate
+                UserDataUpdateState.NoData
             }
             weight.isDigitsOnly() && growth.isDigitsOnly() && stepPlane.isDigitsOnly() -> {
-                if (weight.toInt() > 0 && growth.toInt() > 0 && stepPlane.toInt() > 0) {
-                    repository.saveUserData(UserDataUseCaseModel(growth.toInt(),
-                        weight.toInt(),
-                        stepPlane.toInt()))
-                    UserDataUseCaseUpdateState.Success
-                } else UserDataUseCaseUpdateState.InvalidDataUseCaseUpdate
+                saveNewData(weight, growth, stepPlane)
             }
-            else -> UserDataUseCaseUpdateState.InvalidDataUseCaseUpdate
+            else -> UserDataUpdateState.Invalidate(InvalidateStatus.WRITE_NOT_A_NUMBER)
         }
     }
+
+    private suspend fun saveNewData(weight: String, growth: String, stepPlane: String) =
+        if (weight.toInt() > 0 && growth.toInt() > 0 && stepPlane.toInt() > 0) {
+            repository.saveUserData(UserDataUseCaseModel(growth.toInt(),
+                weight.toInt(),
+                stepPlane.toInt()))
+            UserDataUpdateState.Success
+        } else UserDataUpdateState.Invalidate(InvalidateStatus.WRITE_NIL)
+
 }
 
 
