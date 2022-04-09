@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Шагомер</string>
+
+    <string name="kkal">ккaл</string>
+    <string name="km">км</string>
+    <string name="metrs">метры</string>
+
+    <string name="defoult_text_ticer">0</string>
+
+    //dper - dialog permission
+    <string name="dper_zapret_navsegda">чтобы предоставить разрешение, перейдите в настройки приложения самостоятельно</string>
+    <string name="dper_no_permission">НЕТ РАЗРЕШЕНИЯ</string>
+    <string name="dper_message">чтобы приложение могло подсчитывать ваши шаги, вaм нужно предоставить разрешение для работы с сенсором отслеживающим движения</string>
+    <string name="dper_razreshit">разрешить</string>
+    <string name="dper_restart">перезагрузите приложение</string>
+
+    //am - activity main
+    <string name="am_no_data">нет данных о статистике</string>
+    <string name="am_no_user_data">шагомер не может начать работу\nпока вы не введете ваши данные</string>
+
+    /dstat - dialog statistics
+    <string name="dstat_no_data">нет данных</string>
+
+    //dsettings - dialog settings
+    <string name="dsettings_error_write_null">нельзя вводить 0</string>
+    <string name="dsettings_no_data">введите данные</string>
+
+    //notificatiom
+    <string name="notification_ticker">"шаги: %1$d растояние: %2$.2f"</string>
+    <string name="notification_shapka">"пройдись не ленись"</string>
+
+    //dialog fragmen nastroyki
+    <string name="defoult_hint_edit_text">- - -</string>
+    <string name="zagolovok_vvod_danih">введите ваши данные</string>
+    <string name="zagolovok_vvedite_rost">ваш рост в см</string>
+    <string name="zagolovok_vvedite_ves">ваш вес в кг</string>
+    <string name="zagolovok_vvedite_cel_shagi">суточная цель в шагах</string>
+    <string name="bt_save">сохранить</string>
+
+    //dialog fragment statisitka
+    <string name="zagolovok_statisitka">статистика шагов</string>
+    <string name="bt_7_day">7 дней</string>
+    <string name="bt_30_day">30 дней</string>
+    <string name="bt_90_day">90 дней</string>
+    <string name="zagolovok_vsrednem_za_den">в среднем за день</string>
+    <string name="zagolovok_vsego">всего</string>
+
+    //merge view step km kkal
+    <string name="defoult_merge_view_steps">шаги: 0</string>
+    <string name="defoult_merge_view_kkal">ккaл: 0.0</string>
+    <string name="defoult_merge_view_km">км: 0.0</string>
+    <string name="merge_view_steps">шаги: %1$s</string>
+    <string name="merge_view_km">км: %1$s</string>
+    <string name="merge_view_kkal">ккaл: %1$s</string>
+
+    //recycler view
+    <string name="defoult_0_kkal">ккaл: 0.0</string>
+    <string name="defoult_0_steps">шаги: 0</string>
+    <string name="defoult_0_km">км: 0.0</string>
+    <string name="recycker_view_kkal">ккaл: %1$s</string>
+    <string name="recycker_view_steps">шаги: %1$s</string>
+    <string name="recycker_view_km">км: %1$s</string>
+
+    //ticer and progress view
+    <string name="defoule_plane_shagov_na_den">план\n10000</string>
+    <string name="plane_shagov_na_den">план\n%1$s</string>
+
+    //snack bar delete
+    <string name="snack_bar_delete_header">Вы действительно хотите удалить\nвсе данные?</string>
+    <string name="snack_bar_delete_action">УДАЛИТЬ</string>
+
+</resources>

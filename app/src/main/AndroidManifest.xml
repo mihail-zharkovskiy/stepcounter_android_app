@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="developer.mihailzharkovskiy.stepcounter">
+
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:fullBackupContent="true"
+        android:icon="@drawable/ic_step_counter_for_gp"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_step_counter_for_gp"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Stepcounter">
+        <activity
+            android:name="developer.mihailzharkovskiy.stepcounter.ui.screens.splash_screen.SplashScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.screens.activity_main.MainActivity"
+            android:exported="true" />
+
+        <service
+            android:name=".services.StepCounterService"
+            android:enabled="true"
+            android:exported="false" />
+    </application>
+
+</manifest>

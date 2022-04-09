@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="9dp">
+
+    <TextView
+        android:id="@+id/tv_date"
+        style="@style/text_osnovnie_danie_na_svetlom_fone"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/background_adapter_day_of_week_light"
+        android:gravity="center"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="вт \n29.06" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="70dp" />
+
+    <TextView
+        android:id="@+id/tv_kalorii"
+        style="@style/text_osnovnie_danie_na_temnom_fone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        tools:text="@string/defoult_0_kkal"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_rastoyanie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_rastoyanie" />
+
+
+    <TextView
+        android:id="@+id/tv_shagi"
+        style="@style/text_osnovnie_danie_na_temnom_fone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        tools:text="@string/defoult_0_steps"
+        app:layout_constraintEnd_toStartOf="@+id/tv_rastoyanie"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_rastoyanie"
+        style="@style/text_osnovnie_danie_na_temnom_fone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        tools:text="@string/defoult_0_km"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_shagi"
+        app:layout_constraintEnd_toStartOf="@+id/tv_kalorii"
+        app:layout_constraintStart_toEndOf="@+id/tv_shagi" />
+
+    <developer.mihailzharkovskiy.stepcounter.ui.custom_view.ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="0dp"
+        android:layout_height="8dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_shagi" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ProgressBar">
+        <attr name="backgroundColor" format="color|reference" />
+        <attr name="progressColor" format="color|reference" />
+        <attr name="cornerRadius" format="dimension|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="WeatherParamView">
+        <attr name="hintText" format="string|reference" />
+    </declare-styleable>
+    <declare-styleable name="FullscreenAttrs">
+        <attr name="fullscreenBackgroundColor" format="color" />
+        <attr name="fullscreenTextColor" format="color" />
+    </declare-styleable>
+</resources>

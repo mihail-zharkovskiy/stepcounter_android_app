@@ -1,0 +1,20 @@
+*.iml
+
+# app files
+*.aab
+
+# IDEA
+/.idea
+
+# GADLE
+.gradle
+/build
+
+# LOCAL CONFIG
+local.properties
+/local.properties
+
+.DS_Store
+/captures
+.externalNativeBuild
+.cxx

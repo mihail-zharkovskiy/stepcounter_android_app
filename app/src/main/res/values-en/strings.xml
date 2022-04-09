@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pedometer</string>
+
+    <string name="kkal">kkal</string>
+    <string name="km">km</string>
+    <string name="metrs">metrs</string>
+
+    <string name="defoult_text_ticer">0</string>
+
+    //dper - dialog permission
+    <string name="dper_zapret_navsegda">to grant permission, go to the app settings yourself</string>
+    <string name="dper_no_permission">NO PERMISSION</string>
+    <string name="dper_message">In order for the app to be able to count your steps, you need permission to work with the motion-tracking sensor</string>
+    <string name="dper_razreshit">allow</string>
+    <string name="dper_restart">restart the application</string>
+
+    //am - activity main
+    <string name="am_no_data">no statistics</string>
+    <string name="am_no_user_data">the pedometer cannot start until you keep your data</string>
+
+    /dstat - dialog statistics
+    <string name="dstat_no_data">no statistics</string>
+
+    //dsettings - dialog settings
+    <string name="dsettings_error_write_null">You can\'t enter 0</string>
+    <string name="dsettings_no_data">enter data</string>
+
+    //notificatiom
+    <string name="notification_ticker">"steps: %1$d distance: %2$.2f"</string>
+    <string name="notification_shapka">"don't be lazy."</string>
+
+    //dialog fragmen nastroyki
+    <string name="defoult_hint_edit_text">- - -</string>
+    <string name="zagolovok_vvod_danih">enter your data</string>
+    <string name="zagolovok_vvedite_rost">your height in cm</string>
+    <string name="zagolovok_vvedite_ves">your weight in kg</string>
+    <string name="zagolovok_vvedite_cel_shagi">daily target in steps</string>
+    <string name="bt_save">save</string>
+
+    //dialog fragment statisitka
+    <string name="zagolovok_statisitka">step statistics</string>
+    <string name="bt_7_day">7 day</string>
+    <string name="bt_30_day">30 day</string>
+    <string name="bt_90_day">90 day</string>
+    <string name="zagolovok_vsrednem_za_den">on average per day</string>
+    <string name="zagolovok_vsego">total</string>
+
+    //merge view step km kkal
+    <string name="defoult_merge_view_steps">steps: 0</string>
+    <string name="defoult_merge_view_kkal">kkal: 0.0</string>
+    <string name="defoult_merge_view_km">km: 0.0</string>
+    <string name="merge_view_steps">steps: %1$s</string>
+    <string name="merge_view_km">km: %1$s</string>
+    <string name="merge_view_kkal">kkal: %1$s</string>
+
+    //recycler view
+    <string name="defoult_0_kkal">0.0 kkal</string>
+    <string name="defoult_0_steps">0 steps</string>
+    <string name="defoult_0_km">0.0 km</string>
+    <string name="recycker_view_kkal">%1$s kkal</string>
+    <string name="recycker_view_steps">%1$s steps</string>
+    <string name="recycker_view_km">%1$s km</string>
+
+    //ticer and progress view
+    <string name="defoule_plane_shagov_na_den">plane\n10000</string>
+    <string name="plane_shagov_na_den">plane\n%1$s</string>
+
+    //snack bar delete
+    <string name="snack_bar_delete_header">Do you really want to delete\nall the data?</string>
+    <string name="snack_bar_delete_action">DELETE</string>
+
+</resources>

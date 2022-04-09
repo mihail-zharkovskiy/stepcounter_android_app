@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="corner_radius_no_custom_view">21dp</dimen>
+
+    <dimen name="elevation">3dp</dimen>
+
+    <dimen name="button_height">35dp</dimen>
+
+    <dimen name="text_size_zagolovki_big">19dp</dimen>
+    <dimen name="text_size_zagolovki_small">15dp</dimen>
+    <dimen name="text_size_osnovnie_danie">17dp</dimen>
+
+    <dimen name="text_size_ticker_small">19dp</dimen>
+    <dimen name="text_size_ticker_big">37dp</dimen>
+</resources>
