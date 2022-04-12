@@ -34,7 +34,7 @@ class DialogSettingsViewModel @Inject constructor(
         userDataUseCase.getUserData().collect { dataState ->
             when (dataState) {
                 is DomainDataState.YesData -> {
-                    _uiState.value = DialogSettingsState.YesData(dataState.data.mapToUiModel())
+                    _uiState.value = DialogSettingsState.YesData(dataState.data.mapToiModel())
                 }
                 is DomainDataState.NoData -> {
                     _uiState.value =
