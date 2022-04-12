@@ -1,7 +1,6 @@
 package developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_settings
 
 import android.os.Bundle
-import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import developer.mihailzharkovskiy.stepcounter.databinding.DialogNastroykiBinding
 import developer.mihailzharkovskiy.stepcounter.ui.util.BaseDialogFragment
-import developer.mihailzharkovskiy.stepcounter.ui.util.toast
+import developer.mihailzharkovskiy.stepcounter.ui.util.extensions.toast
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -34,18 +33,13 @@ class DialogSettings : BaseDialogFragment<DialogNastroykiBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.uiState
-                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collect { state -> applyUiState(state) }
-        }
+        observeUiState()
 
         binding.button.setOnClickListener {
-            it.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
-            val height = binding.etRost.text.toString()
-            val weight = binding.etVes.text.toString()
-            val stepPlane = binding.etStepPlane.text.toString()
-            viewModel.saveUserData(weight = weight, height = height, stepPlane = stepPlane)
+            viewModel.saveUserData(
+                weight = binding.etVes.text.toString(),
+                height = binding.etRost.text.toString(),
+                stepPlane = binding.etStepPlane.text.toString())
         }
     }
 
@@ -54,13 +48,20 @@ class DialogSettings : BaseDialogFragment<DialogNastroykiBinding>() {
         toast?.cancel()
     }
 
+    private fun observeUiState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.uiState
+                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                .collect { state -> applyUiState(state) }
+        }
+    }
+
     private fun applyUiState(state: DialogSettingsState) {
         when (state) {
             is DialogSettingsState.YesData -> {
-                val data = state.data
-                binding.etVes.setText(data.weight)
-                binding.etRost.setText(data.height)
-                binding.etStepPlane.setText(data.stepPlane)
+                binding.etVes.setText(state.data.weight)
+                binding.etRost.setText(state.data.height)
+                binding.etStepPlane.setText(state.data.stepPlane)
                 dialog?.setCancelable(true)
             }
             is DialogSettingsState.NoData -> {

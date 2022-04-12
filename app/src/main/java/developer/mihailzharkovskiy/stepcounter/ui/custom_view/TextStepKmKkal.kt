@@ -6,7 +6,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import developer.mihailzharkovskiy.stepcounter.R
 import developer.mihailzharkovskiy.stepcounter.databinding.MergeTextStepKmKkalViewBinding
-import developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistika.model.DataForTextView
+import developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistics.model.DataForTextView
 
 class TextStepKmKkal @JvmOverloads constructor(
     context: Context,

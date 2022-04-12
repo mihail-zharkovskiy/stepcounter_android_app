@@ -33,19 +33,18 @@ class DialogSettingsViewModel @Inject constructor(
     private fun getUserData() = viewModelScope.launch {
         userDataUseCase.getUserData().collect { dataState ->
             when (dataState) {
-                is DomainDataState.YesData -> {
+                is DomainDataState.YesData ->
                     _uiState.value = DialogSettingsState.YesData(dataState.data.mapToiModel())
-                }
-                is DomainDataState.NoData -> {
+                is DomainDataState.NoData ->
                     _uiState.value =
                         DialogSettingsState.NoData(resource.getString(R.string.no_data))
-                }
             }
         }
     }
 
     fun saveUserData(weight: String, height: String, stepPlane: String) = viewModelScope.launch {
-        val resultUpdate = userDataUseCase.updateUserData(height, weight, stepPlane)
+        val resultUpdate = userDataUseCase.updateUserData(weight, height, stepPlane)
+
         when (resultUpdate) {
             is UserDataUpdateState.Invalidate -> {
                 when (resultUpdate.status) {

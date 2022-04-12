@@ -11,6 +11,10 @@ import developer.mihailzharkovskiy.stepcounter.ui.screens.activity_main.model.Ad
 
 class AdapterSteps() : RecyclerView.Adapter<AdapterSteps.ViewHolder>() {
 
+    fun submitList(data: List<AdapterStepsUiModel>) {
+        differ.submitList(data)
+    }
+
     private val differCallback = object : DiffUtil.ItemCallback<AdapterStepsUiModel>() {
         override fun areItemsTheSame(
             oldItem: AdapterStepsUiModel,
@@ -28,10 +32,6 @@ class AdapterSteps() : RecyclerView.Adapter<AdapterSteps.ViewHolder>() {
     }
 
     private val differ = AsyncListDiffer(this, differCallback)
-
-    fun submitList(data: List<AdapterStepsUiModel>) {
-        differ.submitList(data)
-    }
 
     inner class ViewHolder(
         private val binding: AdapterStepsBinding,

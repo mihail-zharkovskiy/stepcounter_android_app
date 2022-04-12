@@ -27,6 +27,19 @@
         app:layout_constraintGuide_begin="70dp" />
 
     <TextView
+        android:id="@+id/tv_shagi"
+        style="@style/text_basic_data_on_light_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_rastoyanie"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/default_0_steps" />
+
+    <TextView
         android:id="@+id/tv_kalorii"
         style="@style/text_basic_data_on_light_background"
         android:layout_width="wrap_content"
@@ -39,27 +52,15 @@
 
 
     <TextView
-        android:id="@+id/tv_shagi"
-        style="@style/text_basic_data_on_light_background"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="16dp"
-        tools:text="@string/default_0_steps"
-        app:layout_constraintEnd_toStartOf="@+id/tv_rastoyanie"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="parent" />
-    <TextView
         android:id="@+id/tv_rastoyanie"
         style="@style/text_basic_data_on_light_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        tools:text="@string/default_0_km"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_shagi"
         app:layout_constraintEnd_toStartOf="@+id/tv_kalorii"
-        app:layout_constraintStart_toEndOf="@+id/tv_shagi" />
+        app:layout_constraintStart_toEndOf="@+id/tv_shagi"
+        tools:text="@string/default_0_km" />
 
     <developer.mihailzharkovskiy.stepcounter.ui.custom_view.ProgressBar
         android:id="@+id/progress_bar"

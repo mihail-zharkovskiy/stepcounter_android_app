@@ -19,10 +19,8 @@ import javax.inject.Inject
 class StepCounterNotification @Inject constructor(
     @ApplicationContext
     private val context: Context,
+    private val notifManager: NotificationManager,
 ) {
-
-    private val notificationManager =
-        context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
     private val notificationBuilder: NotificationCompat.Builder by lazy {
         NotificationCompat.Builder(context, NOTIF_CHANNEL_ID)
@@ -54,14 +52,14 @@ class StepCounterNotification @Inject constructor(
                 NOTIF_CHANNEL_NAME,
                 IMPORTANCE_DEFAULT
             )
-            notificationManager.createNotificationChannel(channel)
+            notifManager.createNotificationChannel(channel)
         }
         return notificationBuilder.build()
     }
 
     @MainThread
     fun updateNotification(steps: Int, distance: Double, dayStepPlane: Int) {
-        notificationManager.notify(
+        notifManager.notify(
             NOTIF_ID,
             notificationBuilder
                 .setContentText(context.getString(R.string.notification_ticker, steps, distance))

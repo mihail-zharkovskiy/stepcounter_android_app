@@ -20,28 +20,26 @@ class UserDataUseCase @Inject constructor(
 
     suspend fun updateUserData(
         weight: String,
-        growth: String,
+        height: String,
         stepPlane: String,
     ): UserDataUpdateState {
         return when {
-            weight.isEmpty() || growth.isEmpty() || stepPlane.isEmpty() -> {
+            weight.isEmpty() || height.isEmpty() || stepPlane.isEmpty() -> {
                 UserDataUpdateState.NoData
             }
-            weight.isDigitsOnly() && growth.isDigitsOnly() && stepPlane.isDigitsOnly() -> {
-                saveNewData(weight, growth, stepPlane)
+            weight.isDigitsOnly() && height.isDigitsOnly() && stepPlane.isDigitsOnly() -> {
+                saveNewData(weight.toInt(), height.toInt(), stepPlane.toInt())
             }
             else -> UserDataUpdateState.Invalidate(InvalidateStatus.WRITE_NOT_A_NUMBER)
         }
     }
 
-    private suspend fun saveNewData(weight: String, growth: String, stepPlane: String) =
-        if (weight.toInt() > 0 && growth.toInt() > 0 && stepPlane.toInt() > 0) {
-            repository.saveUserData(UserDataUseCaseModel(growth.toInt(),
-                weight.toInt(),
-                stepPlane.toInt()))
+    private suspend fun saveNewData(weight: Int, height: Int, stepPlane: Int): UserDataUpdateState {
+        return if (weight > 0 && height > 0 && stepPlane > 0) {
+            repository.saveUserData(UserDataUseCaseModel(height, weight, stepPlane))
             UserDataUpdateState.Success
         } else UserDataUpdateState.Invalidate(InvalidateStatus.WRITE_NIL)
-
+    }
 }
 
 

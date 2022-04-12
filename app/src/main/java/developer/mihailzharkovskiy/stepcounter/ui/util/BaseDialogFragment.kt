@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.viewbinding.ViewBinding
 import developer.mihailzharkovskiy.stepcounter.R
+import developer.mihailzharkovskiy.stepcounter.ui.util.extensions.toDp
 
 abstract class BaseDialogFragment<T : ViewBinding> : DialogFragment() {
 

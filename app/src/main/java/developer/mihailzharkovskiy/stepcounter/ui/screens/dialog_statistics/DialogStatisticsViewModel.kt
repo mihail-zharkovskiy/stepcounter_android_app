@@ -1,4 +1,4 @@
-package developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistika
+package developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistics
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,9 +6,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import developer.mihailzharkovskiy.stepcounter.domain.DomainDataState
 import developer.mihailzharkovskiy.stepcounter.domain.usecase.statistic.StatisticsUseCase
 import developer.mihailzharkovskiy.stepcounter.domain.usecase.statistic.StatisticsUseCaseModel
-import developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistika.model.DataForChart
-import developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistika.model.DataForTextView
-import developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistika.model.DialogStatisticsUiModel
+import developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistics.model.DataForChart
+import developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistics.model.DataForTextView
+import developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistics.model.DialogStatisticsUiModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -43,17 +43,17 @@ class DialogStatisticsViewModel @Inject constructor(
 
     private fun prepareDataForUi(danie: List<StatisticsUseCaseModel>): DialogStatisticsUiModel {
         var sumSteps = 0
-        var sumKm = 0.0
+        var sumMeters = 0.0
         var sumKkal = 0.0
         val numberOfDay = danie.size
         danie.forEach {
             sumSteps += it.steps
-            sumKm += it.meters
+            sumMeters += it.meters
             sumKkal += it.kkal
         }
         val dataForChart = renderDataForChart(danie)
-        val dataAllTime = renderAllTimeData(sumSteps, sumKm, sumKkal)
-        val dataSummary = renderOnAveragePerDayData(sumSteps, sumKm, sumKkal, numberOfDay)
+        val dataAllTime = renderAllTimeData(sumSteps, sumMeters, sumKkal)
+        val dataSummary = renderOnAveragePerDayData(sumSteps, sumMeters, sumKkal, numberOfDay)
 
         return DialogStatisticsUiModel(dataForChart, dataSummary, dataAllTime)
     }
@@ -86,9 +86,9 @@ class DialogStatisticsViewModel @Inject constructor(
     private fun renderDataForChart(data: List<StatisticsUseCaseModel>): DataForChart {
         val listDate = arrayListOf<String>()
         val listStep = arrayListOf<Int>()
-        data.forEach { it ->
-            listDate.add(it.date)
-            listStep.add(it.steps)
+        data.forEach { statistics ->
+            listDate.add(statistics.date)
+            listStep.add(statistics.steps)
         }
         return DataForChart(listDate, listStep)
     }

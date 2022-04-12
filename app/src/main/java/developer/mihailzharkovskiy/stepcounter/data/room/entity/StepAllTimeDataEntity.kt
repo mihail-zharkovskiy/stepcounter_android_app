@@ -35,7 +35,7 @@ data class StepAllTimeDataEntity(
         return result
     }
 
-    fun plusData(newEntity: StepAllTimeDataEntity): StepAllTimeDataEntity {
+    fun plusEntity(newEntity: StepAllTimeDataEntity): StepAllTimeDataEntity {
         return StepAllTimeDataEntity(
             date = newEntity.date,
             stepPlane = newEntity.stepPlane,

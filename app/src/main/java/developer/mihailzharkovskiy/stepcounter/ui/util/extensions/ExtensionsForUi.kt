@@ -1,4 +1,4 @@
-package developer.mihailzharkovskiy.stepcounter.ui.util
+package developer.mihailzharkovskiy.stepcounter.ui.util.extensions
 
 import android.content.Context
 import android.content.res.Resources

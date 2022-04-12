@@ -8,7 +8,7 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
 import developer.mihailzharkovskiy.stepcounter.R
-import developer.mihailzharkovskiy.stepcounter.ui.util.toDp
+import developer.mihailzharkovskiy.stepcounter.ui.util.extensions.toDp
 
 class ProgressBar @JvmOverloads constructor(
     context: Context,

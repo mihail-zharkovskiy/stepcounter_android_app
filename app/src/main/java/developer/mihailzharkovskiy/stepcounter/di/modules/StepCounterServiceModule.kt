@@ -1,5 +1,6 @@
 package developer.mihailzharkovskiy.stepcounter.di.modules
 
+import android.app.NotificationManager
 import android.content.Context
 import android.hardware.SensorManager
 import dagger.Module
@@ -19,5 +20,11 @@ object StepCounterServiceModule {
         return context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
     }
 
+    @Provides
+    @Singleton
+    fun provideNotificationManager(@ApplicationContext context: Context): NotificationManager {
+        return context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+    }
 }
 

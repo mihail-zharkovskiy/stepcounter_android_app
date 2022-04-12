@@ -13,7 +13,6 @@ import developer.mihailzharkovskiy.stepcounter.data.room.dao.DaoAllTimeData
 import developer.mihailzharkovskiy.stepcounter.data.room.dao.DaoDataForNow
 import developer.mihailzharkovskiy.stepcounter.data.room.dao.DaoDataUser
 import developer.mihailzharkovskiy.stepcounter.di.anatations.DispatcherIo
-import developer.mihailzharkovskiy.stepcounter.di.anatations.ReleaseDataBase
 import developer.mihailzharkovskiy.stepcounter.domain.Repository
 import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Singleton
@@ -35,7 +34,6 @@ object DataModule {
     }
 
     //  ROOM
-    @ReleaseDataBase
     @Provides
     @Singleton
     fun provideStepsDataBase(@ApplicationContext context: Context) =
@@ -44,16 +42,16 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideDaoDataForNow(@ReleaseDataBase dataBase: StepsDataBase) =
+    fun provideDaoDataForNow(dataBase: StepsDataBase) =
         dataBase.getDaoDataForNow()
 
     @Provides
     @Singleton
-    fun provideDaoAllTimeData(@ReleaseDataBase dataBase: StepsDataBase) =
+    fun provideDaoAllTimeData(dataBase: StepsDataBase) =
         dataBase.getDaoAllTimeData()
 
     @Provides
     @Singleton
-    fun provideDaoUserData(@ReleaseDataBase dataBase: StepsDataBase) =
+    fun provideDaoUserData(dataBase: StepsDataBase) =
         dataBase.getDaoUserData()
 }

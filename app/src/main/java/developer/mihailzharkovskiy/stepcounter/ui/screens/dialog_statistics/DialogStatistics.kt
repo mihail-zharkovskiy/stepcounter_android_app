@@ -1,4 +1,4 @@
-package developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistika
+package developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistics
 
 import android.graphics.Color
 import android.os.Bundle
@@ -14,7 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.button.MaterialButtonToggleGroup
 import dagger.hilt.android.AndroidEntryPoint
 import developer.mihailzharkovskiy.stepcounter.databinding.DialogStatistikaBinding
-import developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistika.model.DataForChart
+import developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistics.model.DataForChart
 import developer.mihailzharkovskiy.stepcounter.ui.util.BaseDialogFragment
 import im.dacer.androidcharts.LineView
 import kotlinx.coroutines.flow.collect
@@ -34,16 +34,8 @@ class DialogStatistics : BaseDialogFragment<DialogStatistikaBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.toggleButton.addOnButtonCheckedListener(toggleGroupListener)
-
-//        viewModel.getDataForSpecificTime(7)
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.uiState
-                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collect { uiState -> applyUiState(uiState) }
-        }
+        observeUiState()
     }
 
     override fun onDestroyView() {
@@ -51,13 +43,11 @@ class DialogStatistics : BaseDialogFragment<DialogStatistikaBinding>() {
         super.onDestroyView()
     }
 
-    private fun drawGrafika(data: DataForChart) {
-        binding.grafic.apply {
-            setDrawDotLine(false)
-            setShowPopup(LineView.SHOW_POPUPS_MAXMIN_ONLY)
-            setColorArray(intArrayOf(Color.BLACK))
-            setBottomTextList(data.listDate)
-            setDataList(arrayListOf(data.listStep))
+    private fun observeUiState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.uiState
+                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                .collect { uiState -> applyUiState(uiState) }
         }
     }
 
@@ -72,6 +62,16 @@ class DialogStatistics : BaseDialogFragment<DialogStatistikaBinding>() {
                 binding.statistikaSrednemZaDen.renderPrams(uiState.data.dataOnAveragePerDay)
                 drawGrafika(uiState.data.dataForChart)
             }
+        }
+    }
+
+    private fun drawGrafika(data: DataForChart) {
+        binding.grafic.apply {
+            setDrawDotLine(false)
+            setShowPopup(LineView.SHOW_POPUPS_MAXMIN_ONLY)
+            setColorArray(intArrayOf(Color.BLACK))
+            setBottomTextList(data.listDate)
+            setDataList(arrayListOf(data.listStep))
         }
     }
 

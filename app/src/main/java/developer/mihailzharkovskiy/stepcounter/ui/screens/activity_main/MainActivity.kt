@@ -19,11 +19,11 @@ import developer.mihailzharkovskiy.stepcounter.databinding.ActivityMainBinding
 import developer.mihailzharkovskiy.stepcounter.services.StepCounterService
 import developer.mihailzharkovskiy.stepcounter.ui.screens.activity_main.adapter.AdapterSteps
 import developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_settings.DialogSettings
-import developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistika.DialogStatistics
-import developer.mihailzharkovskiy.stepcounter.ui.util.checkingStepSensorPermission
-import developer.mihailzharkovskiy.stepcounter.ui.util.goToAppSetting
-import developer.mihailzharkovskiy.stepcounter.ui.util.requestStepSensorPermission
-import developer.mihailzharkovskiy.stepcounter.ui.util.toast
+import developer.mihailzharkovskiy.stepcounter.ui.screens.dialog_statistics.DialogStatistics
+import developer.mihailzharkovskiy.stepcounter.ui.util.extensions.checkingStepSensorPermission
+import developer.mihailzharkovskiy.stepcounter.ui.util.extensions.goToAppSetting
+import developer.mihailzharkovskiy.stepcounter.ui.util.extensions.requestStepSensorPermission
+import developer.mihailzharkovskiy.stepcounter.ui.util.extensions.toast
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -40,13 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         setupView()
         startStepCounter()
-
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch { observeDataStepCounter() }
-                launch { observeUiState() }
-            }
-        }
+        observeUiStates()
     }
 
     override fun onPause() {
@@ -70,16 +64,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun observeDataStepCounter() {
-        viewModel.dataStepCounter.collect { data ->
+    private fun observeUiStates() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch { observeStepCounterState() }
+                launch { observeStatisticsState() }
+            }
+        }
+    }
+
+    private suspend fun observeStepCounterState() {
+        viewModel.stepCounterUiState.collect { data ->
             binding.tickerAndProgrss.renderParams(data.progress, data.steps, data.stepPlane)
             binding.tvTikerMeters.text = data.km
             binding.tvTikerKalorii.text = data.kkal
         }
     }
 
-    private suspend fun observeUiState() {
-        viewModel.uiState.collect { state ->
+    private suspend fun observeStatisticsState() {
+        viewModel.uiStatUiState.collect { state ->
             when (state) {
                 is MainActivityUiState.NoStatisticsData -> {
                     binding.rvStatistikaShagov.visibility = View.INVISIBLE
@@ -107,22 +110,19 @@ class MainActivity : AppCompatActivity() {
         grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            REQUEST_CODE_STEP_SENSOR_PERMISSION -> {
-                if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                    if (!shouldShowRequestPermissionRationale(Manifest.permission.ACTIVITY_RECOGNITION)) {
-                        goToAppSetting()
-                    }
-                } else toast(getString(R.string.dper_restart))
-            }
+        if (requestCode == REQUEST_CODE_STEP_SENSOR_PERMISSION) {
+            if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                if (!shouldShowRequestPermissionRationale(Manifest.permission.ACTIVITY_RECOGNITION)) {
+                    goToAppSetting()
+                }
+            } else toast(getString(R.string.dper_restart))
         }
     }
 
     private fun startStepCounter() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            if (checkingStepSensorPermission()) {
-                StepCounterService.startService(this)
-            } else requestStepSensorPermission(REQUEST_CODE_STEP_SENSOR_PERMISSION)
+            if (checkingStepSensorPermission()) StepCounterService.startService(this)
+            else requestStepSensorPermission(REQUEST_CODE_STEP_SENSOR_PERMISSION)
         } else StepCounterService.startService(this)
     }
 

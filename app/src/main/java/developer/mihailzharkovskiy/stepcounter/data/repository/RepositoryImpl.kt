@@ -22,6 +22,8 @@ class RepositoryImpl @Inject constructor(
     @DispatcherIo private val dispatcherIo: CoroutineDispatcher,
 ) : Repository {
 
+    //Room может сам переключаться на Dispatcher.Io, но для красоты я делаю это вручную
+
     override fun getAllTimeData(): Flow<List<StatisticsUseCaseModel>> {
         return daoAllTimeData.getAllTimeData()
             .map { entity -> entity.map { it.mapToDomainModel() } }
@@ -64,6 +66,7 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
+    /**отвечает за сохранение данных при сворачивании приложения (кэширует значаения счетчика)**/
     override suspend fun saveDataForNow(data: TickerUseCaseModel?) {
         withContext(dispatcherIo) {
             if (data != null) {
@@ -73,13 +76,21 @@ class RepositoryImpl @Inject constructor(
         }
     }
 
+    /**отвечает за сохранение данных в статистику
+     * логика:
+     * 1) метод вызывается когда пользователь нажимает кнопку сохранить
+     * 2) [oldData] == null если в бд "сегодня" несохранялись данные
+     * 3) если [oldData] != null значит юзер "сегодня" нажимал кнопку "сохранить" =>
+     * нужно сложить уже сохраненные за сегодня данные с текущеми при помощи plusEntity()
+     * **/
     override suspend fun saveDataForTheDay(data: TickerUseCaseModel?) {
         withContext(dispatcherIo) {
             data?.let {
                 val newData = data.mapToAllTimeDataEntity()
-                when (val oldData = daoAllTimeData.getLastSaveData()) {
+                val oldData = daoAllTimeData.getLastSaveData()
+                when (oldData) {
                     null -> daoAllTimeData.saveData(newData)
-                    else -> daoAllTimeData.saveData(oldData.plusData(newData))
+                    else -> daoAllTimeData.saveData(oldData.plusEntity(newData))
                 }
                 daoDataForNow.deleteAll()
             }

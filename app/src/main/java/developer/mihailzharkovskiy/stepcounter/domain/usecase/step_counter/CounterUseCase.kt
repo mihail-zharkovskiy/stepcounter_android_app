@@ -16,6 +16,7 @@ class CounterUseCase @Inject constructor(
     private val repository: Repository,
     private val coroutineScope: CoroutineScope,
 ) {
+
     private var shagi = 0
     private var kkal = 0.0
     private var km = 0.0
@@ -71,8 +72,10 @@ class CounterUseCase @Inject constructor(
                     _tickerData.value =
                         TickerUseCaseModel(date, shagi, km, kkal, progress, stepsPlane)
                 }
-                //над этим else надо думать
-                //else throw (Exception("НЕПОЛУЧИЛ В СЧЕТЧИКЕ ДАННЫЕ О ПОЛЬЗОВАТЕЛЕ "))
+                //обрабатывать else особо нет смысла,тк до этого момента выполняется куча проверок,
+                //и даже если data == null ничего не случиться
+                //TODO(#2 ничего страшного, но выглядит некрасиово, надо бы будет исправить)
+                // else {}
             }
         }
     }

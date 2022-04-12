@@ -23,12 +23,12 @@ class MainActivityViewModel @Inject constructor(
     private val statisticsUseCase: StatisticsUseCase,
 ) : ViewModel(), LifecycleObserver {
 
-    private val _uiState =
+    private val _uiStatUiState =
         MutableStateFlow<MainActivityUiState>(MainActivityUiState.NoStatisticsData)
-    val uiState: StateFlow<MainActivityUiState> get() = _uiState.asStateFlow()
+    val uiStatUiState: StateFlow<MainActivityUiState> get() = _uiStatUiState.asStateFlow()
 
-    private val _dataStepCounter = MutableStateFlow(MainActivityUiModel())
-    val dataStepCounter: StateFlow<MainActivityUiModel> get() = _dataStepCounter.asStateFlow()
+    private val _stepCounterUiState = MutableStateFlow(MainActivityUiModel())
+    val stepCounterUiState: StateFlow<MainActivityUiModel> get() = _stepCounterUiState.asStateFlow()
 
     init {
         checkUserData()
@@ -42,14 +42,12 @@ class MainActivityViewModel @Inject constructor(
 
     fun clearDatabase() = viewModelScope.launch {
         statisticsUseCase.deleteAll()
-        _uiState.value = MainActivityUiState.NoStatisticsData
+        _uiStatUiState.value = MainActivityUiState.NoStatisticsData
     }
 
     private fun observeStepCounterData() = viewModelScope.launch {
         tickerUseCase.tickerData.collect {
-            if (it != null) {
-                _dataStepCounter.value = it.mapToUiModel()
-            }
+            if (it != null) _stepCounterUiState.value = it.mapToUiModel()
         }
     }
 
@@ -57,10 +55,10 @@ class MainActivityViewModel @Inject constructor(
         statisticsUseCase.getAllStatistics().collect { state ->
             when (state) {
                 is DomainDataState.NoData -> {
-                    _uiState.value = MainActivityUiState.NoStatisticsData
+                    _uiStatUiState.value = MainActivityUiState.NoStatisticsData
                 }
                 is DomainDataState.YesData -> {
-                    _uiState.value = MainActivityUiState.YesStatisticsData(
+                    _uiStatUiState.value = MainActivityUiState.YesStatisticsData(
                         state.data.map { it.mapToUiModel() }.reversed()
                     )
                 }
@@ -71,8 +69,8 @@ class MainActivityViewModel @Inject constructor(
     private fun checkUserData() = viewModelScope.launch {
         userDataUseCase.getUserData().collect { data ->
             when (data) {
-                is DomainDataState.NoData -> _uiState.value = MainActivityUiState.NoUserData
-                is DomainDataState.YesData -> _uiState.value = MainActivityUiState.YesUserData
+                is DomainDataState.NoData -> _uiStatUiState.value = MainActivityUiState.NoUserData
+                is DomainDataState.YesData -> _uiStatUiState.value = MainActivityUiState.YesUserData
             }
         }
     }

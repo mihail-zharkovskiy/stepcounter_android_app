@@ -79,7 +79,12 @@ class StepCounterService : Service(), SensorEventListener {
 
     companion object {
         private const val ACTION_START_SERVICE = "ACTION_START_SERVICE"
-        private const val ACTION_PAUSE_SERVICE = "ACTION_POUSE_SERVICE"
+        private const val ACTION_PAUSE_SERVICE = "ACTION_PAUSE_SERVICE"
+
+        /**для api 29+ вызывай только если permission.ACTIVITY_RECOGNITION == PERMISSION_GRANTED
+         * для api < 29 вызывай без проверок.
+         * TODO(#1 @RequiresApi(Build.VERSION_CODES.Q) @RequiresPermission(Manifest.permission.ACTIVITY_RECOGNITION))
+         * **/
 
         fun startService(context: Context) {
             val intent = Intent(context, StepCounterService::class.java)
